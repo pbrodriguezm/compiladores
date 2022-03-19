@@ -1,0 +1,16 @@
+.LC0:
+        .string "abcdef"
+main:
+        push    rbp
+        mov     rbp, rsp
+        mov     QWORD PTR [rbp-8], OFFSET FLAT:.LC0
+        mov     DWORD PTR [rbp-12], 11148
+        mov     eax, DWORD PTR [rbp-12]
+        lea     edx, [rax+7]
+        test    eax, eax
+        cmovs   eax, edx
+        sar     eax, 3
+        mov     DWORD PTR [rbp-16], eax
+        mov     eax, 0
+        pop     rbp
+        ret

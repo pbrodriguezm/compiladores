@@ -1,0 +1,6 @@
+
+int main(){
+	char *c="abcde";
+	int m = 11148;
+	return 0;
+}

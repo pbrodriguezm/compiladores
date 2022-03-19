@@ -1,0 +1,43 @@
+div4(int):
+        push    rbp
+        mov     rbp, rsp
+        mov     DWORD PTR [rbp-4], edi
+        mov     eax, DWORD PTR [rbp-4]
+        lea     edx, [rax+3]
+        test    eax, eax
+        cmovs   eax, edx
+        sar     eax, 2
+        pop     rbp
+        ret
+.LC0:
+        .string "abcdef"
+main:
+        push    rbp
+        mov     rbp, rsp
+        sub     rsp, 32
+        mov     QWORD PTR [rbp-8], OFFSET FLAT:.LC0
+        mov     DWORD PTR [rbp-12], 11148
+        mov     eax, DWORD PTR [rbp-12]
+        lea     edx, [rax+7]
+        test    eax, eax
+        cmovs   eax, edx
+        sar     eax, 3
+        mov     DWORD PTR [rbp-16], eax
+        mov     eax, DWORD PTR [rbp-12]
+        lea     edx, [rax+3]
+        test    eax, eax
+        cmovs   eax, edx
+        sar     eax, 2
+        mov     DWORD PTR [rbp-20], eax
+        mov     eax, DWORD PTR [rbp-12]
+        mov     edx, eax
+        shr     edx, 31
+        add     eax, edx
+        sar     eax
+        mov     DWORD PTR [rbp-24], eax
+        mov     edi, 5
+        call    div4(int)
+        mov     DWORD PTR [rbp-28], eax
+        mov     eax, 0
+        leave
+        ret
